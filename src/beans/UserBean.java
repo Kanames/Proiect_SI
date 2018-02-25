@@ -3,9 +3,8 @@ package beans;
 import java.io.Serializable;
 
 public class UserBean implements Serializable {
-	
 	/**
-	 * 
+	 * @author Stefan
 	 */
 	private static final long serialVersionUID = 1L;
 	
@@ -14,7 +13,6 @@ public class UserBean implements Serializable {
 	
 	public UserBean() {
 	}
-	
 	
 	public String getName() {
 		return name;

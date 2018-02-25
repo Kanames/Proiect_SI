@@ -14,7 +14,6 @@
         <link href="lib_frameworkuri/FontAwesome/css/font-awesome.min.css" rel="stylesheet">
 	</head>
 	<body>
-
 	 <div class="site-wrapper">
          <div class="site-wrapper-inner">
              <div class="cover-container">

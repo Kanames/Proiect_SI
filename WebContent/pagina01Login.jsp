@@ -24,8 +24,8 @@
 				</button>
 			</div>
 			<div class="etc-login-form">
-				<p>forgot your password? <a href="BackPagina05.php">click here</a></p>
-				<p>new user? <a href="BackPagina04.php">create new account</a></p>
+				<p>forgot your password? <a href="BackPagina06.jsp">click here</a></p>
+				<p>new user? <a href="BackPagina05.jsp">create new account</a></p>
 			</div>
 		</form>
       </div>
