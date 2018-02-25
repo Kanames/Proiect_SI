@@ -1,7 +1,8 @@
 package com.Login;
 import org.apache.log4j.Logger;
 
-import beans.UserBean;
+import com.beans.UserBean;
+
 import generalHelper.CommonHelper;
 public class LoginHelper {
 	
@@ -10,13 +11,23 @@ public class LoginHelper {
 	 * Metoda ce executa flow-ul logic din pagina 1 (Principala).
 	 * @param currentUser Obiect de tipul UserBean trimis ca parametru pentru verificarea utilizatorului 
 	 * curent in pagina si crearea flowlui logic al acestuia.
+	 * @throws Exception 
 	 */
-	public static void executeFlow(UserBean currentUser) {
+	public static void executeFlow(UserBean currentUser){
 		log.debug("<<< IN executeFlow() >>>");
 		log.debug("currentUser: "+CommonHelper.trsfOut(currentUser));
-		
+		checkUserName(currentUser.getName());
 		log.debug("<<< OUT executeFlow() >>>");
 	}
+	
+	private static void checkUserName(String currentUser) {
+		log.debug("<<< IN checkUserName() >>>");
+		String userNameTrimmed = currentUser.trim(); //curatare de spatiu din dreapta si stanga
+		log.debug("userNameTrimmed: "+userNameTrimmed);
+		
+		log.debug("<<< OUT checkUserName() >>>");
+	}
+
 	
 
 

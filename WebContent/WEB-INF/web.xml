@@ -26,6 +26,11 @@
 	<listener>
 		<listener-class>log4jImp.ContextListener</listener-class>
 	</listener>
+	
+	<listener>  
+    	<listener-class>hibernateImp.HibernateListener</listener-class>  
+	</listener> 
+	
 	<display-name>Log4jWebDemo1</display-name>
 	<context-param>
 		<param-name>log4j-config-location</param-name>

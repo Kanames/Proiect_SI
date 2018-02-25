@@ -1,0 +1,9 @@
+You're getting the error because the hibernate libraries are not available to Tomcat. 
+In your picture, below the hibernate library set there is an empty set called 'Web App Libraries' - 
+this is the set your hibernate libraries need to be in.
+
+Right click your project -> Build Path -> Configure Build Path, and remove the hibernate set
+ from the build path. Now import the jars into the WEB-INF/lib folder. Refresh your project and
+  now you should see them listed in the 'Web App Libraries' set (i appreciate this is somewhat 
+  annoying that you have to import them into your code base - someone else might know a better
+   way to do this that doesn't involve copying the jars in)

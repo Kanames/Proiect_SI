@@ -3,13 +3,16 @@ package generalHelper;
 import java.lang.reflect.Field;
 
 	/**
+	 * Aceasta clasa este un helper general de folosit in toata aplicatia.Rolul lui este de a mentine diferite metode refolosibile in aplicatie
+	 * intr-un singur loc.
 	 * @author Stefan
-	 * @category Helper  Un helper general de folosit in toata aplicatia.
+	 * @category Helper
+	 * @version 0.1
 	 * @since 25/02/2018
 	 */
 public class CommonHelper {
 	/**
-	 * @param object
+	 * @param object Obiectul pe care il dorim afisat un forma "Human readable"
 	 * @return Obiectul reprezentat ca string. String-ul contine detali despre obiect *atribut obiect* - *valoare atribut obiect*; 
 	 * @since 25/02/2018
 	 */
