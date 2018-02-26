@@ -18,8 +18,7 @@ public class Register extends HttpServlet  {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		log.debug("<<< In doPost >>>");
-			
-	      
+		RegisterHelper.executeFlow(request);	
 		log.debug("<<< Out doPost >>>");
 	}
 

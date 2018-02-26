@@ -116,6 +116,11 @@ public class CommonHelper {
 		log.debug("<<< OUT creatVisitLog() >>>");
 		return visitLog;
 	}
+
+	public static String getIp(HttpServletRequest request) {
+		// TODO CREARE METODE DE RETURNARE IP pe baza requestului ! Tipul dorit este STRING 
+		return null;
+	}
 	
 //	public static void main(String[] args) {
 //		UserBean user_test = new UserBean();
