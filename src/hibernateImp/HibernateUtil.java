@@ -4,6 +4,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import com.beans.T_Message;
+import com.beans.T_Profile;
+import com.beans.T_User;
 import com.beans.T_VisitLog;
 
 public class HibernateUtil {  
@@ -15,6 +17,9 @@ public class HibernateUtil {
             // Create the SessionFactory from hibernate.cfg.xml  
             sessionFactory = new Configuration().configure()
             		.addAnnotatedClass(T_VisitLog.class)
+            		.addAnnotatedClass(T_User.class)
+            		.addAnnotatedClass(T_Profile.class)
+            		.addAnnotatedClass(T_Message.class)
             		.buildSessionFactory();
         } catch (Throwable ex) {  
             // Make sure you log the exception, as it might be swallowed  

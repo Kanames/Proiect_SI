@@ -24,6 +24,10 @@ public class T_VisitLog {
 	private String os;
 	@Column(name="CH_VISITLOG_DATE")
 	private Date date;
+	@Column(name="CH_VISITLOG_PAGE")
+	private String visitLogPage;
+	@Column(name="CH_VISITLOG_PAGE_ERR")
+	private String visitLogPageErr;
 	
 	public int getId() {
 		return id;
@@ -60,6 +64,18 @@ public class T_VisitLog {
 	}
 	public void setDate(Date date) {
 		this.date = date;
+	}
+	public String getVisitLogPage() {
+		return visitLogPage;
+	}
+	public void setVisitLogPage(String visitLogPage) {
+		this.visitLogPage = visitLogPage;
+	}
+	public String getVisitLogPageErr() {
+		return visitLogPageErr;
+	}
+	public void setVisitLogPageErr(String visitLogPageErr) {
+		this.visitLogPageErr = visitLogPageErr;
 	}
 	
 	

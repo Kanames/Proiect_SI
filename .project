@@ -28,4 +28,17 @@
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>org.eclipse.wst.jsdt.core.jsNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>HIBERNATE</name>
+			<type>2</type>
+			<locationURI>ResurseForTesting</locationURI>
+		</link>
+	</linkedResources>
+	<variableList>
+		<variable>
+			<name>ResurseForTesting</name>
+			<value>file:/C:/Users/Stefan/git/Proiect_SI/WebContent/WEB-INF</value>
+		</variable>
+	</variableList>
 </projectDescription>

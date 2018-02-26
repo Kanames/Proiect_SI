@@ -12,7 +12,7 @@ public class test {
 		
 		visitlog.setBrowerVersion("test");
 		
-		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(T_VisitLog.class).buildSessionFactory();
+		SessionFactory factory = new Configuration().configure().addAnnotatedClass(T_VisitLog.class).buildSessionFactory();
 		Session s = factory.getCurrentSession();
 		
 		s.beginTransaction();

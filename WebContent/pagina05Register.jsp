@@ -3,7 +3,7 @@
 	<div class="logo">register</div>
 	<!-- Main Form -->
 	<div class="login-form-1">
-		<form id="register-form" class="text-left" action="../../BE_development/PHP/FlowDecisions/flow04Register.php">
+		<form id="register-form" class="text-left" action="Register" METHOD="POST" >
 			<div class="login-form-main-message"></div>
 			<div class="main-login-form">
 				<div class="login-group">

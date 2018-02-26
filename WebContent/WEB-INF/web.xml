@@ -13,6 +13,15 @@
 		<servlet-name>S_Login</servlet-name>
 		<url-pattern>/Login</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>S_Register</servlet-name>
+		<servlet-class>com.Register.Register</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>S_Register</servlet-name>
+		<url-pattern>/Register</url-pattern>
+	</servlet-mapping>
 
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>

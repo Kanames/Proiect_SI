@@ -1,7 +1,7 @@
 package com.Login;
 import org.apache.log4j.Logger;
 
-import com.beans.UserBean;
+import com.beans.T_User;
 
 import generalHelper.CommonHelper;
 public class LoginHelper {
@@ -13,10 +13,10 @@ public class LoginHelper {
 	 * curent in pagina si crearea flowlui logic al acestuia.
 	 * @throws Exception 
 	 */
-	public static void executeFlow(UserBean currentUser){
+	public static void executeFlow(T_User currentUser){
 		log.debug("<<< IN executeFlow() >>>");
 		log.debug("currentUser: "+CommonHelper.trsfOut(currentUser));
-		checkUserName(currentUser.getName());
+		checkUserName(currentUser.getNume());
 		log.debug("<<< OUT executeFlow() >>>");
 	}
 	
