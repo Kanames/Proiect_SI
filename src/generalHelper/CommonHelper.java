@@ -118,8 +118,7 @@ public class CommonHelper {
 	}
 
 	public static String getIp(HttpServletRequest request) {
-		// TODO CREARE METODE DE RETURNARE IP pe baza requestului ! Tipul dorit este STRING 
-		return null;
+		return request.getRemoteAddr();
 	}
 	
 //	public static void main(String[] args) {

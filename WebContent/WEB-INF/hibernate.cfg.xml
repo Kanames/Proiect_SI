@@ -5,7 +5,7 @@
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mysql://stefanpaladuta.go.ro:3306/web_project_pie</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/web_project_pie</property>
         <property name="hibernate.connection.username">tester</property>
         <property name="hibernate.connection.password">tester</property>
         

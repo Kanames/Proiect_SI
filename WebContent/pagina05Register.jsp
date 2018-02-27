@@ -1,7 +1,19 @@
 <!-- REGISTRATION FORM -->
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <div class="text-center" style="padding:50px 0">
 	<div class="logo">register</div>
 	<!-- Main Form -->
+	<div class="row" style="display: <%=""%>">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6">
+                <div class="alert alert-danger alert-dismissable">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>	
+                	<%= request.getAttribute("msgErr") %>
+                	<% request.removeAttribute("msgErr");%>
+                </div>
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
 	<div class="login-form-1">
 		<form id="register-form" class="text-left" action="Register" METHOD="POST" >
 			<div class="login-form-main-message"></div>
