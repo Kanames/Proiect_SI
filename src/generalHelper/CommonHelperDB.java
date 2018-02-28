@@ -1,25 +1,22 @@
-package com.Login;
+package generalHelper;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import com.Register.Register;
 import com.beans.T_VisitLog;
 
 import hibernateImp.HibernateUtil;
-/**
- * Clasele de tip BH sunt folosite in cadrul proiectului ca si clase pentru operarea de metode DB precum INSERT, UPDATE, DELETE.
- * @author Stefan
- * @version 0.1
- */
-public class LoginBH {
 
+public class CommonHelperDB {
+	static final Logger log = Logger.getLogger(CommonHelperDB.class);
 	public static void saveVisitLog(T_VisitLog visitLog){
+		
 		SessionFactory sessionFactory =  new HibernateUtil().getSessionFactory();
 		Session session =  sessionFactory.getCurrentSession();
 		session.beginTransaction();
 		session.save(visitLog);
 		session.getTransaction().commit();
 	}
-	
-	
 }

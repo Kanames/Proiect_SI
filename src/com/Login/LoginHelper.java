@@ -17,6 +17,7 @@ public class LoginHelper {
 		log.debug("<<< IN executeFlow() >>>");
 		log.debug("currentUser: "+CommonHelper.trsfOut(currentUser));
 		checkUserName(currentUser.getNume());
+		LoginHelperDB.checkRegisterUser(currentUser);
 		log.debug("<<< OUT executeFlow() >>>");
 	}
 	

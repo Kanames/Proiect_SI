@@ -3,7 +3,13 @@
 <div class="text-center" style="padding:50px 0">
 	<div class="logo">register</div>
 	<!-- Main Form -->
-	<div class="row" style="display: <%=""%>">
+	<div class="row" style="display:
+	 <% 
+	if( request.getAttribute("msgErr") != null){ 
+		out.println(""); 
+	}else{
+		out.println("none");
+	} %>">
             <div class="col-sm-3"></div>
             <div class="col-sm-6">
                 <div class="alert alert-danger alert-dismissable">

@@ -1,3 +1,21 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<div class="row" style="display:
+	 <% 
+	if( request.getAttribute("msgErr") != null){ 
+		out.println(""); 
+	}else{
+		out.println("none");
+	} %>">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6">
+                <div class="alert alert-danger alert-dismissable">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>	
+                	<%= request.getAttribute("msgErr") %>
+                	<% request.removeAttribute("msgErr");%>
+                </div>
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
 <div class="row">
     <div class="col-sm-3"></div>
     <div class="col-sm-6">
