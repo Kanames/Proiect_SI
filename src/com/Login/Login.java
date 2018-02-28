@@ -25,17 +25,11 @@ public class Login extends HttpServlet {
 		RequestDispatcher dispatcher;
 		String nextJSP;
 		try {
-			String name = request.getParameter("tmp_username");
-			String pass = request.getParameter("tmp_password");
-
-			T_User currentUser = new T_User();
-			currentUser.setNume(name);
-			currentUser.setPassword(pass);
-
+		
 			T_VisitLog visitLog = CommonHelper.creatVisitLog(request, "Pagina 01 Login", "");
 			CommonHelperDB.saveVisitLog(visitLog);
 
-			LoginHelper.executeFlow(currentUser);
+			LoginHelper.executeFlow(request);
 
 			// New location to be redirected
 			nextJSP = "/BackPagina04.jsp";

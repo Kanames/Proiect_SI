@@ -1,4 +1,6 @@
 package com.Login;
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.log4j.Logger;
 
 import com.beans.T_User;
@@ -9,11 +11,19 @@ public class LoginHelper {
 	static final Logger log = Logger.getLogger(LoginHelper.class);
 	/**
 	 * Metoda ce executa flow-ul logic din pagina 1 (Principala).
-	 * @param currentUser Obiect de tipul UserBean trimis ca parametru pentru verificarea utilizatorului 
+	 * @param request Obiect de tipul UserBean trimis ca parametru pentru verificarea utilizatorului 
 	 * curent in pagina si crearea flowlui logic al acestuia.
 	 * @throws Exception 
 	 */
-	public static void executeFlow(T_User currentUser) throws Exception{
+	public static void executeFlow(HttpServletRequest request) throws Exception{
+		
+		String name = request.getParameter("tmp_username");
+		String pass = request.getParameter("tmp_password");
+
+		T_User currentUser = new T_User();
+		currentUser.setNume(name);
+		currentUser.setPassword(pass);
+		
 		log.debug("<<< IN executeFlow() >>>");
 		log.debug("currentUser: "+CommonHelper.trsfOut(currentUser));
 		checkUserName(currentUser.getNume());

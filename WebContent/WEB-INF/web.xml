@@ -13,7 +13,7 @@
 		<servlet-name>S_Login</servlet-name>
 		<url-pattern>/Login</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>S_Register</servlet-name>
 		<servlet-class>com.Register.Register</servlet-class>
@@ -22,7 +22,17 @@
 		<servlet-name>S_Register</servlet-name>
 		<url-pattern>/Register</url-pattern>
 	</servlet-mapping>
-	
+
+	<servlet>
+		<servlet-name>ActionServlet</servlet-name>
+		<servlet-class>com.Main.ActionServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>ActionServlet</servlet-name>
+		<url-pattern>/ActionServlet</url-pattern>
+	</servlet-mapping>
+
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 		<welcome-file>index.htm</welcome-file>
@@ -35,11 +45,11 @@
 	<listener>
 		<listener-class>log4jImp.ContextListener</listener-class>
 	</listener>
-	
-	<listener>  
-    	<listener-class>hibernateImp.HibernateListener</listener-class>  
-	</listener> 
-	
+
+	<listener>
+		<listener-class>hibernateImp.HibernateListener</listener-class>
+	</listener>
+
 	<display-name>Log4jWebDemo1</display-name>
 	<context-param>
 		<param-name>log4j-config-location</param-name>
