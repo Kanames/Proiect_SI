@@ -15,6 +15,7 @@ import com.beans.T_VisitLog;
 import generalHelper.CommonHelper;
 import generalHelper.CommonHelperDB;
 public class Register extends HttpServlet {
+	private static final long serialVersionUID = 1L;
 	static final Logger log = Logger.getLogger(Register.class);
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

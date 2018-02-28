@@ -18,11 +18,8 @@ import generalHelper.CommonHelper;
 import generalHelper.CommonHelperDB;
 
 public class Login extends HttpServlet {
-
 	private static final long serialVersionUID = 1L;
-
 	static final Logger log = Logger.getLogger(Login.class);
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		log.debug("<<< In doPost >>>");
 		RequestDispatcher dispatcher;
@@ -45,7 +42,7 @@ public class Login extends HttpServlet {
 			dispatcher = getServletContext().getRequestDispatcher(nextJSP);
 			dispatcher.forward(request, response);
 		} catch (Exception e) {
-
+			T_VisitLog visitLog = CommonHelper.creatVisitLog(request, "Pagina 01 Login", e.getMessage());
 			request.setAttribute("msgErr", e.getMessage());
 			nextJSP = "/BackPagina01.jsp";
 			dispatcher = getServletContext().getRequestDispatcher(nextJSP);
