@@ -1,11 +1,7 @@
 package com.Main;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
 
-import javax.persistence.Query;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,8 +18,8 @@ public class ActionServlet extends HttpServlet{
 	static final Logger log = Logger.getLogger(ActionServlet.class);
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		log.debug("<<< In doPost >>>");
-		String mesajScris = request.getParameter("#mesajScris");
-		System.out.println("#mesajScris: "+mesajScris);
+		String mesajScris = request.getParameter("user");
+		System.out.println("user: "+mesajScris);
 //		Date date = new Date();
 //		String hql2 = "FROM T_Message WHERE ch_mess_time  > '"+currentUser.getNume()+"'";
 //		Query queryNickname = session.createQuery(hql2);
@@ -32,9 +28,10 @@ public class ActionServlet extends HttpServlet{
 //		if( resultsNickname.size() != 1) {
 //			throw new Exception("User neinregistrat cu acest email sau nickname");
 //		}
+		if(mesajScris != null) {
+			response.getWriter().write("<div class='chat friend'><div class='user-photo'></div><p class='chat-msg'>($row[Username]) $row[Text]</p></div>");
+		}
 		
-		
-		response.getWriter().write("<div class='chat friend'><div class='user-photo'></div><p class='chat-msg'>($row[Username]) $row[Text]</p></div>");
 		log.debug("<<< Out doPost >>>");
 	}
 

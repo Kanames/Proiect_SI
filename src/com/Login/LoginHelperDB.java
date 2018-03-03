@@ -46,8 +46,9 @@ public class LoginHelperDB {
 		List resultsUser = queryUser.getResultList();
 		log.debug("resultsUser.size(): "+resultsUser.size());
 		T_User user = (T_User) resultsUser.get(0);
-
-		if( !user.getPassword().equals(currentUser.getPassword()) ) {
+		String parolaUser = CommonHelper.decriptareParola(user.getPassword());
+		log.debug("parolaUser(decriptata): "+parolaUser);
+		if( !parolaUser.equals(currentUser.getPassword()) ) {
 			throw new Exception("Parola gresita pentru User cu nickname-ul :" + currentUser.getNume());
 		}
 	}

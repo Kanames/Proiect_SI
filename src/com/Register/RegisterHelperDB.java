@@ -1,5 +1,9 @@
 package com.Register;
 
+import java.util.List;
+
+import javax.persistence.Query;
+
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -36,6 +40,19 @@ public class RegisterHelperDB {
 		session.save(profil);
 		session.getTransaction().commit();
 		log.debug("<<<< IN saveProfilUser() >>>>"); 
+	}
+	public static void checkNicknameExists(String nickname) throws Exception {
+		SessionFactory sessionFactory = new HibernateUtil().getSessionFactory();
+		Session session = sessionFactory.getCurrentSession();
+		session.beginTransaction();
+		String hql = "FROM T_Profile u WHERE ch_prf_nickname = '"+nickname+"'";
+		Query queryNickname = session.createQuery(hql);
+		List resultsNickname = queryNickname.getResultList();
+		log.debug("resultsNickname.size(): "+resultsNickname.size());
+		if( resultsNickname.size() == 1) {
+			throw new Exception("User deja inregistrat cu acest nickname");
+		}
+		
 	}
 
 }

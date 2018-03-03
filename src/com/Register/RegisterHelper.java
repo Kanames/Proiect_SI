@@ -31,7 +31,9 @@ public class RegisterHelper {
 		log.debug("numeSiPrenumeStr: " + numeSiPrenumeStr);
 		log.debug("sex: " + sex);
 		log.debug("deAccord: " + deAccord);
-
+		
+		//RegisterHelperDB.checkNicknameExists(nickname);
+		
 		if ("on".equalsIgnoreCase(deAccord)) {
 			log.debug("Agreement is ON");
 			String parolaVerificataSiCriptata = RegisterHelper.verificareParole(parolaFirst, parolaSecond);
@@ -66,26 +68,12 @@ public class RegisterHelper {
 		if (!parolaFirst.equals(parolaSecond)) {
 			throw new Exception("Prima si a doua parola trebuie sa fie la fel");
 		}
-		String parolaCriptata = criptareParola(parolaFirst);
+		String parolaCriptata = CommonHelper.criptareParola(parolaFirst);
 		log.debug("<<< OUT verificareParole() >>>");
 		return parolaCriptata;
 	}
 
-	private static String criptareParola(String parolaSecond) {
-		log.debug("<<< OUT criptareParola() >>>");
-
-		// TODO Metoda ce sa cripteze parola , Cat de simpla se poate
-		log.debug("<<< OUT criptareParola() >>>");
-		return parolaSecond;
-	}
-
-	private static String decriptareParola(String parolaCriptata) {
-		log.debug("<<< OUT decriptareParola() >>>");
-		// TODO Metoda ce sa decripteze parola , Cat de simpla se poate
-		String parolaDecriptata = null;
-		log.debug("<<< OUT decriptareParola() >>>");
-		return parolaDecriptata;
-	}
+	
 
 	public static HashMap<String, String> splitNumeSiPrenume(String numeSiPrenumeStr) {
 		log.debug("<<< OUT splitNumeSiPrenume() >>>");
