@@ -14,36 +14,50 @@
     </div>
     <div class="chat-form">
         <textarea id="mesajScris"></textarea>
-        <button class="btn">Send</button>
+        <button class="btn" onclick="doAjaxAd()">Send</button>
     </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script>
-function update()
-{
-    $('.chatlogs').children().last().focus();
-    $.post("ActionServlet", { nrmesaje:$(".chatlogs").children().length},
-        function(responseText){
-            $('.chatlogs').append(responseText);
-        });
-    setTimeout('update()', 1000);
-}
-	$(document).ready(function() {
-		$('.btn').click(function(event) {
-			update();
-			var mesajScris = $('#mesajScris').val();
-			$.post('ActionServlet', {
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+	<script type="text/javascript">
+
+function doAjaxAd() {
+		var mesajScris = $('#mesajScris').val();
+		 if($.trim($("#mesajScris").val())) {
+	         $('.chatlogs').append('<div class="chat self"><div class="user-photo"><img src="https://f4.bcbits.com/img/0009587045_10.jpg"></div>\n' +
+	             '<p class="chat-msg"> '+$('#mesajScris').val()
+	             + '</p>'+'</div>');
+	         golestMesajScris();
+	     }
+		$.ajax({
+			async : "false",
+			type : "post",
+			url : "ActionServlet", 
+			data : {
 				user : mesajScris
-			}, function(responseText) {
-				  $('.chatlogs').append(responseText);
-			});
-			 if($.trim($("#mesajScris").val())) {
-		            $('.chatlogs').append('<div class="chat self"><div class="user-photo"><img src="https://f4.bcbits.com/img/0009587045_10.jpg"></div>\n' +
-		                '<p class="chat-msg"> '+$('#mesajScris').val()
-		                + '</p>'+'</div>');
-		            golestMesajScris();
-		        }
+			},
+			success : function(data) {
+				 $(".chatlogs").append(data);
+			},
+			complete : function(data) {
+				setTimeout("doAjax()", 500);
+			}
 		});
+}	
+	
+	
+	
+function doAjax() {
+	$.ajax({
+		type : "post",
+		url : "ActionServlet", 
+		success : function(data) {
+			 $(".chatlogs").append(data);
+		},
+		complete : function(data) {
+			setTimeout("doAjax()", 500);
+		}
 	});
+}
+
 	
 	function golestMesajScris() {
 		document.getElementById("mesajScris").value = '';

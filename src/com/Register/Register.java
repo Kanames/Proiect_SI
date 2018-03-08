@@ -17,7 +17,6 @@ import generalHelper.CommonHelperDB;
 public class Register extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	static final Logger log = Logger.getLogger(Register.class);
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		log.debug("<<< In doPost >>>");
 		RequestDispatcher dispatcher;
@@ -28,14 +27,12 @@ public class Register extends HttpServlet {
 			visitLog = CommonHelper.creatVisitLog(request, "Pagina 05 Register", "");
 			CommonHelperDB.saveVisitLog(visitLog);
 			nextJSP = "/BackPagina01.jsp";
-
 		}catch(Exception e){
 			visitLog = CommonHelper.creatVisitLog(request, "Pagina 05 Register", e.getMessage());
 			CommonHelperDB.saveVisitLog(visitLog);
 			request.setAttribute("msgErr", e.getMessage());
 			nextJSP = "/BackPagina05.jsp";
 		}
-		
 		dispatcher = getServletContext().getRequestDispatcher(nextJSP);
 		dispatcher.forward(request, response);
 		log.debug("<<< Out doPost >>>");

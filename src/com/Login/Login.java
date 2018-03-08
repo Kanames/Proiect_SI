@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
-import com.beans.T_User;
 import com.beans.T_VisitLog;
 
 import generalHelper.CommonHelper;
@@ -23,20 +22,18 @@ public class Login extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		log.debug("<<< In doPost >>>");
 		RequestDispatcher dispatcher;
+		T_VisitLog visitLog;
 		String nextJSP;
-		try {
-		
-			T_VisitLog visitLog = CommonHelper.creatVisitLog(request, "Pagina 01 Login", "");
+		try { 
+			visitLog = CommonHelper.creatVisitLog(request, "Pagina 01 Login", "");
 			CommonHelperDB.saveVisitLog(visitLog);
-
 			LoginHelper.executeFlow(request);
-
 			// New location to be redirected
 			nextJSP = "/BackPagina04.jsp";
 			dispatcher = getServletContext().getRequestDispatcher(nextJSP);
 			dispatcher.forward(request, response);
 		} catch (Exception e) {
-			T_VisitLog visitLog = CommonHelper.creatVisitLog(request, "Pagina 01 Login", e.getMessage());
+			visitLog = CommonHelper.creatVisitLog(request, "Pagina 01 Login", e.getMessage());
 			request.setAttribute("msgErr", e.getMessage());
 			nextJSP = "/BackPagina01.jsp";
 			dispatcher = getServletContext().getRequestDispatcher(nextJSP);

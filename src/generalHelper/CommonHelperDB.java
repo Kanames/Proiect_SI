@@ -11,8 +11,7 @@ import hibernateImp.HibernateUtil;
 public class CommonHelperDB {
 	static final Logger log = Logger.getLogger(CommonHelperDB.class);
 	public static void saveVisitLog(T_VisitLog visitLog){
-		SessionFactory sessionFactory =  new HibernateUtil().getSessionFactory();
-		Session session =  sessionFactory.getCurrentSession();
+		Session session =  new HibernateUtil().getSession();
 		session.beginTransaction();
 		session.save(visitLog);
 		session.getTransaction().commit();

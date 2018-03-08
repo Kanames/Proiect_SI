@@ -1,5 +1,6 @@
 package com.Login;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 
@@ -16,6 +17,7 @@ public class LoginHelper {
 	 * @throws Exception 
 	 */
 	public static void executeFlow(HttpServletRequest request) throws Exception{
+		log.debug("<<< IN executeFlow() >>>");
 		
 		String name = request.getParameter("tmp_username");
 		String pass = request.getParameter("tmp_password");
@@ -24,10 +26,11 @@ public class LoginHelper {
 		currentUser.setNume(name);
 		currentUser.setPassword(pass);
 		
-		log.debug("<<< IN executeFlow() >>>");
 		log.debug("currentUser: "+CommonHelper.trsfOut(currentUser));
 		checkUserName(currentUser.getNume());
 		LoginHelperDB.checkRegisterUser(currentUser);
+		HttpSession sesionReq = request.getSession();
+		sesionReq.setAttribute("numeUserCurrent", currentUser.getNume());
 		log.debug("<<< OUT executeFlow() >>>");
 	}
 	

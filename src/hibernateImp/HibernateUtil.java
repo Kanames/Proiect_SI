@@ -4,6 +4,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import com.beans.T_Chat;
 import com.beans.T_Message;
 import com.beans.T_Profile;
 import com.beans.T_User;
@@ -21,6 +22,7 @@ public class HibernateUtil {
             		.addAnnotatedClass(T_User.class)
             		.addAnnotatedClass(T_Profile.class)
             		.addAnnotatedClass(T_Message.class)
+            		.addAnnotatedClass(T_Chat.class)
             		.buildSessionFactory();
         } catch (Throwable ex) {  
             // Make sure you log the exception, as it might be swallowed  
@@ -32,8 +34,9 @@ public class HibernateUtil {
     public static SessionFactory getSessionFactory() {  
         return sessionFactory;  
     }  
-    public static Session getSession() {  
-        return sessionFactory.getCurrentSession(); 
+    public static Session getSession() { 
+    	Session s = sessionFactory.getCurrentSession(); 
+        return  s; 
     }  
   
 } 

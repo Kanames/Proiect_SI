@@ -25,25 +25,26 @@ public class RegisterHelperDB {
 	 */
 	public static void saveUser(T_User user){
 		log.debug("<<<< IN saveUser() >>>>"); 
-		SessionFactory sessionFactory =  new HibernateUtil().getSessionFactory();
-		Session session =  sessionFactory.getCurrentSession();
+		Session session =  new HibernateUtil().getSession();
 		session.beginTransaction();
 		session.save(user);
 		session.getTransaction().commit();
 		log.debug("<<<< OUT saveUser() >>>>"); 
 	}
+	/**
+	 * Metoda de salvare a obiectului T_Profile in baza ta de date
+	 * @param profil Obiectul de tip T_Profile care este mapat la tabela CH_PROFILE va fi salvat ca record in aceasta.
+	 */
 	public static void saveProfilUser(T_Profile profil){
 		log.debug("<<<< IN saveProfilUser() >>>>"); 
-		SessionFactory sessionFactory =  new HibernateUtil().getSessionFactory();
-		Session session =  sessionFactory.getCurrentSession();
+		Session session =  new HibernateUtil().getSession();
 		session.beginTransaction();
 		session.save(profil);
 		session.getTransaction().commit();
 		log.debug("<<<< IN saveProfilUser() >>>>"); 
 	}
 	public static void checkNicknameExists(String nickname) throws Exception {
-		SessionFactory sessionFactory = new HibernateUtil().getSessionFactory();
-		Session session = sessionFactory.getCurrentSession();
+		Session session =  new HibernateUtil().getSession();
 		session.beginTransaction();
 		String hql = "FROM T_Profile u WHERE ch_prf_nickname = '"+nickname+"'";
 		Query queryNickname = session.createQuery(hql);
