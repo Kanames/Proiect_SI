@@ -18,7 +18,6 @@ public class LoginHelper {
 	 */
 	public static void executeFlow(HttpServletRequest request) throws Exception{
 		log.debug("<<< IN executeFlow() >>>");
-		
 		String name = request.getParameter("tmp_username");
 		String pass = request.getParameter("tmp_password");
 
@@ -38,7 +37,6 @@ public class LoginHelper {
 		log.debug("<<< IN checkUserName() >>>");
 		String userNameTrimmed = currentUser.trim(); //curatare de spatiu din dreapta si stanga
 		log.debug("userNameTrimmed: "+userNameTrimmed);
-		
 		log.debug("<<< OUT checkUserName() >>>");
 	}
 

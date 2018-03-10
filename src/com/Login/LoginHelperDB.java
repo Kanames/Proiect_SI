@@ -29,7 +29,6 @@ public class LoginHelperDB {
 		SessionFactory sessionFactory = new HibernateUtil().getSessionFactory();
 		Session session = sessionFactory.getCurrentSession();
 		session.beginTransaction();
-		//log.debug("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$: "+CommonHelper.trsfOut(currentUser.getProfil()));
 		String hql2 = "FROM T_Profile u WHERE ch_prf_nickname = '"+currentUser.getNume()+"'";
 		Query queryNickname = session.createQuery(hql2);
 		List resultsNickname = queryNickname.getResultList();
@@ -51,6 +50,7 @@ public class LoginHelperDB {
 			throw new Exception("Parola gresita pentru User cu nickname-ul :" + currentUser.getNume());
 		}
 		session.getTransaction().commit();
+		log.debug("<<< OUT checkRegisterUser() >>>");
 	}
 
 }

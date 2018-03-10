@@ -19,6 +19,11 @@ import generalHelper.CommonHelperDB;
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	static final Logger log = Logger.getLogger(Login.class);
+	/**
+	 * Metoda doPost care orice Servlet o poate avea
+	 * @author Stefan
+	 * @category doPost actions
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		log.debug("<<< In doPost >>>");
 		RequestDispatcher dispatcher;
