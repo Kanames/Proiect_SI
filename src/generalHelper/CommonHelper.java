@@ -30,7 +30,7 @@ public class CommonHelper {
 	 * @return Obiectul reprezentat ca string. String-ul contine detali despre obiect *atribut obiect* - *valoare atribut obiect*;
 	 * @since 25/02/2018
 	 * @author Stefan
-	 * @category Debugging
+	 * @category Helper
 	 */
 	public static String trsfOut(Object object) {
 		log.debug("<<< IN trsfOut() >>>");
@@ -64,7 +64,7 @@ public class CommonHelper {
 	 * @throws IOException
 	 * @author Stefan
 	 * @since 10/03/2018
-	 * @category Debugging
+	 * @category Helper
 	 */
 	public static T_VisitLog creatVisitLog(HttpServletRequest request, String visitLogPage, String visitLogPageErr)throws IOException {
 		log.debug("<<< IN creatVisitLog() >>>");
@@ -92,7 +92,7 @@ public class CommonHelper {
 	 * @return numele Brower-ului folosit inregistrat in sistem
 	 * @author Stefan
 	 * @since 10/03/2018
-	 * @category Debugging
+	 * @category Helper
 	 */
 	private static String gettingBrowerfromRequest(String userAgent, String user) {
 		log.debug("<<< IN gettingBrowerfromRequest() >>>");
@@ -136,7 +136,7 @@ public class CommonHelper {
 	 * @return numele OS-ului folosit de utilizator
 	 * @author Stefan
 	 * @since 10/03/2018
-	 * @category Debugging
+	 * @category Helper
 	 */
 	private static String gettingSystemOSfromRequest(String userAgent) {
 		log.debug("<<< IN gettingSystemOSfromRequest() >>>");
@@ -162,7 +162,7 @@ public class CommonHelper {
 	 * Metoda pentru afisarea in log unui request de tip HttpServletRequest
 	 * 
 	 * @param request Obiectul de tip HttpServletRequest ce vine din pagina jsp.
-	 * @category Debugging
+	 * @category Helper
 	 * @author Stefan
 	 * @since 10/03/2018
 	 */
@@ -183,12 +183,20 @@ public class CommonHelper {
 	 * @return IP-ului userului.
 	 * @author Stefan
 	 * @since 10/03/2018
-	 * @category Debugging
+	 * @category Helper
 	 */
 	public static String getIp(HttpServletRequest request) {
 		return request.getRemoteAddr();
 	}
 
+	/**
+	 * Metoda pentru criptarea parolei inainte de a fi adaugata in BD.
+	 * @param String ce contine parola initiala.
+	 * @return String ce contine parola criptata.
+	 * @author Cosmin
+	 * @since 02/03/2018
+	 * @category Helper
+	 */
 	public static String criptareParola(String parolaSecond) {
 		log.debug("<<< OUT criptareParola() >>>");
 		String parolaCriptata = "";
@@ -202,6 +210,15 @@ public class CommonHelper {
 		return parolaCriptata;
 	}
 
+	/**
+	 * Metoda pentru decriptarea parolei la verificarea de login dupa ce a fost
+	 * scoasa din BD.
+	 * @param String ce contine parola criptata.
+	 * @return String ce contine parola initiala.
+	 * @author Cosmin
+	 * @since 02/03/2018
+	 * @category Helper
+	 */
 	public static String decriptareParola(String parolaCriptata) {
 		log.debug("<<< OUT decriptareParola() >>>");
 		String parolaDecriptata = "";
