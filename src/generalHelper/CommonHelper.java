@@ -24,11 +24,15 @@ public class CommonHelper {
 	static final Logger log = Logger.getLogger(CommonHelper.class);
 
 	/**
+	 * Metoda ce returneaza reprezentarea clara (human readable) sub forma de String
+	 * a oricarui obiect pasat.
+	 * 
 	 * @param object
 	 *            Obiectul pe care il dorim afisat un forma "Human readable"
 	 * @return Obiectul reprezentat ca string. String-ul contine detali despre
 	 *         obiect *atribut obiect* - *valoare atribut obiect*;
 	 * @since 25/02/2018
+	 * @author Stefan
 	 */
 	public static String trsfOut(Object object) {
 		StringBuffer representation = new StringBuffer();
@@ -50,39 +54,45 @@ public class CommonHelper {
 		return representation.toString();
 	}
 
+	/**
+	 * Metoda de creare a obiectului de top T_Visitlog pe baza requestului , pagini
+	 * vizitate [ si optional erroarea primita in pagina curenta ].
+	 * 
+	 * @param request
+	 *            Reprezinta requestul de tip HttpServletRequest pe care pagina jsp
+	 *            o transmite servlet-ului.
+	 * @param visitLogPage
+	 *            Pagina in care se afla utilizatorul
+	 * @param visitLogPageErr
+	 *            Posibila eroarea pe care acesta o poate primi in pagina curenta.
+	 * @return Obiect de tip T_Visitlog
+	 * @throws IOException
+	 * @author Stefan
+	 * @since 10/03/2018
+	 */
 	public static T_VisitLog creatVisitLog(HttpServletRequest request, String visitLogPage, String visitLogPageErr)
 			throws IOException {
-		log.debug("<<< IN createVisitLog() >>>");
+		log.debug("<<< IN creatVisitLog() >>>");
 		log.debug("request: " + trsfOut(request));
 		T_VisitLog visitLog = new T_VisitLog();
-		log.debug("request.getHeader(\"User-Agent\"): " + trsfOut(request.getHeader("User-Agent")));
-
-		Enumeration<String> headerNames = request.getHeaderNames();
-		if (headerNames != null) {
-			while (headerNames.hasMoreElements()) {
-				log.debug("Header: " + request.getHeader(headerNames.nextElement()));
-			}
-		}
-
+		log.debug("User-Agent [header]: " + trsfOut(request.getHeader("User-Agent")));
+		afisareaHeadRequest(request);
 		String browserDetails = request.getHeader("User-Agent");
 		String userAgent = browserDetails;
 		String user = userAgent.toLowerCase();
-		String os = "";
-		String browser = "";
+		String os = gettingSystemOSfromRequest(userAgent);
+		String browser = gettingBrowerfromRequest(userAgent, user);
+		visitLog.setVisitLogPage(visitLogPage);
+		visitLog.setVisitLogPageErr(visitLogPageErr);
+		visitLog.setIp(request.getRemoteAddr());
+		visitLog.setBrowserName(browser);
+		visitLog.setOs(os);
+		log.debug("<<< OUT creatVisitLog() >>>");
+		return visitLog;
+	}
 
-		if (userAgent.toLowerCase().indexOf("windows") >= 0) {
-			os = "Windows";
-		} else if (userAgent.toLowerCase().indexOf("mac") >= 0) {
-			os = "Mac";
-		} else if (userAgent.toLowerCase().indexOf("x11") >= 0) {
-			os = "Unix";
-		} else if (userAgent.toLowerCase().indexOf("android") >= 0) {
-			os = "Android";
-		} else if (userAgent.toLowerCase().indexOf("iphone") >= 0) {
-			os = "IPhone";
-		} else {
-			os = "UnKnown, More-Info: " + userAgent;
-		}
+	private static String gettingBrowerfromRequest(String userAgent, String user) {
+		String browser = null;
 		// ===============Browser===========================
 		if (user.contains("msie")) {
 			String substring = userAgent.substring(userAgent.indexOf("MSIE")).split(";")[0];
@@ -113,14 +123,45 @@ public class CommonHelper {
 		} else {
 			browser = "UnKnown, More-Info: " + userAgent;
 		}
-		visitLog.setVisitLogPage(visitLogPage);
-		visitLog.setVisitLogPageErr(visitLogPageErr);
-		visitLog.setIp(request.getRemoteAddr());
-		visitLog.setBrowserName(browser);
-		visitLog.setOs(os);
+		return browser;
+	}
 
-		log.debug("<<< OUT creatVisitLog() >>>");
-		return visitLog;
+	private static String gettingSystemOSfromRequest(String userAgent) {
+		String os;
+		if (userAgent.toLowerCase().indexOf("windows") >= 0) {
+			os = "Windows";
+		} else if (userAgent.toLowerCase().indexOf("mac") >= 0) {
+			os = "Mac";
+		} else if (userAgent.toLowerCase().indexOf("x11") >= 0) {
+			os = "Unix";
+		} else if (userAgent.toLowerCase().indexOf("android") >= 0) {
+			os = "Android";
+		} else if (userAgent.toLowerCase().indexOf("iphone") >= 0) {
+			os = "IPhone";
+		} else {
+			os = "UnKnown, More-Info: " + userAgent;
+		}
+		return os;
+	}
+
+	/**
+	 * Metoda pentru afisarea in log unui request de tip HttpServletRequest
+	 * 
+	 * @param request
+	 *            Obiectul de tip HttpServletRequest ce vine din pagina jsp.
+	 * @category Debugging
+	 * @author Stefan
+	 * @since 10/03/2018
+	 */
+	private static void afisareaHeadRequest(HttpServletRequest request) {
+		log.debug("<<< IN afisareaHeadRequest() >>>");
+		Enumeration<String> headerNames = request.getHeaderNames();
+		if (headerNames != null) {
+			while (headerNames.hasMoreElements()) {
+				log.debug("Header: " + request.getHeader(headerNames.nextElement()));
+			}
+		}
+		log.debug("<<< OUT afisareaHeadRequest() >>>");
 	}
 
 	public static String getIp(HttpServletRequest request) {
@@ -153,36 +194,4 @@ public class CommonHelper {
 		return parolaDecriptata;
 	}
 
-	private String constructCriteriaQuery(String conto13Cifre, String simbolR1C1, String simbolR1C2, String simbolR2C1, String simbolR2C2) {
-		StringBuilder criteriaQuery=  new StringBuilder();
-		
-		Boolean isConto13CifreNull  = (conto13Cifre == null  && conto13Cifre == "")  ? !isSimbolValueInjectionSQL(conto13Cifre)  : false;
-		Boolean isSimbolR1C1Null    = (simbolR1C1 == null && simbolR1C1 == "")       ? !isSimbolValueInjectionSQL(simbolR1C1)    : false;
-		Boolean isSimbolR1C2Null 	= (simbolR1C2 == null && simbolR1C2 == "") 		 ? !isSimbolValueInjectionSQL(simbolR1C2)    : false;
-		Boolean isSimbolR2C1Null 	= (simbolR2C1 == null && simbolR2C1 == "") 		 ? !isSimbolValueInjectionSQL(simbolR2C1)    : false;
-		Boolean isSimbolR2C2Null 	= (simbolR2C2 == null && simbolR2C2 == "") 		 ? !isSimbolValueInjectionSQL(simbolR2C2)    : false;
-
-		if(isConto13CifreNull){
-			criteriaQuery.append(" ");
-		}
-		if (isSimbolR1C1Null) {
-			criteriaQuery.append("  ");
-		}
-		if (isSimbolR1C2Null) {
-			criteriaQuery.append(" ");
-		}
-		if (isSimbolR2C1Null) {
-			criteriaQuery.append(" ");
-		}
-		if (isSimbolR2C2Null) {
-			criteriaQuery.append("  ");
-		}
-		
-		return criteriaQuery.toString();
-	}
-	
-	private Boolean isSimbolValueInjectionSQL(String testInjectionSQL) {
-		//testInjectionSQL.cheamaMetodaDinUtilStrings();
-		return false;
-	}
 }
