@@ -26,15 +26,14 @@ public class CommonHelper {
 	/**
 	 * Metoda ce returneaza reprezentarea clara (human readable) sub forma de String
 	 * a oricarui obiect pasat.
-	 * 
-	 * @param object
-	 *            Obiectul pe care il dorim afisat un forma "Human readable"
-	 * @return Obiectul reprezentat ca string. String-ul contine detali despre
-	 *         obiect *atribut obiect* - *valoare atribut obiect*;
+	 * @param object Obiectul pe care il dorim afisat un forma "Human readable"
+	 * @return Obiectul reprezentat ca string. String-ul contine detali despre obiect *atribut obiect* - *valoare atribut obiect*;
 	 * @since 25/02/2018
 	 * @author Stefan
+	 * @category Debugging
 	 */
 	public static String trsfOut(Object object) {
+		log.debug("<<< IN trsfOut() >>>");
 		StringBuffer representation = new StringBuffer();
 		representation.append(object.getClass().getName());
 		for (Field field : object.getClass().getDeclaredFields()) {
@@ -51,27 +50,23 @@ public class CommonHelper {
 			}
 
 		}
+		log.debug("<<< OUT trsfOut() >>>");
 		return representation.toString();
 	}
 
 	/**
 	 * Metoda de creare a obiectului de top T_Visitlog pe baza requestului , pagini
 	 * vizitate [ si optional erroarea primita in pagina curenta ].
-	 * 
-	 * @param request
-	 *            Reprezinta requestul de tip HttpServletRequest pe care pagina jsp
-	 *            o transmite servlet-ului.
-	 * @param visitLogPage
-	 *            Pagina in care se afla utilizatorul
-	 * @param visitLogPageErr
-	 *            Posibila eroarea pe care acesta o poate primi in pagina curenta.
+	 * @param request Reprezinta requestul de tip HttpServletRequest pe care pagina jsp o transmite servlet-ului.
+	 * @param visitLogPage Pagina in care se afla utilizatorul
+	 * @param visitLogPageErr Posibila eroarea pe care acesta o poate primi in pagina curenta.
 	 * @return Obiect de tip T_Visitlog
 	 * @throws IOException
 	 * @author Stefan
 	 * @since 10/03/2018
+	 * @category Debugging
 	 */
-	public static T_VisitLog creatVisitLog(HttpServletRequest request, String visitLogPage, String visitLogPageErr)
-			throws IOException {
+	public static T_VisitLog creatVisitLog(HttpServletRequest request, String visitLogPage, String visitLogPageErr)throws IOException {
 		log.debug("<<< IN creatVisitLog() >>>");
 		log.debug("request: " + trsfOut(request));
 		T_VisitLog visitLog = new T_VisitLog();
@@ -90,8 +85,17 @@ public class CommonHelper {
 		log.debug("<<< OUT creatVisitLog() >>>");
 		return visitLog;
 	}
-
+	/**
+	 * 	Metoda ce returneaza un String care reprezinta numele Brower-ului pe care utilizatorul il foloseste.
+	 * @param userAgent
+	 * @param user
+	 * @return numele Brower-ului folosit inregistrat in sistem
+	 * @author Stefan
+	 * @since 10/03/2018
+	 * @category Debugging
+	 */
 	private static String gettingBrowerfromRequest(String userAgent, String user) {
+		log.debug("<<< IN gettingBrowerfromRequest() >>>");
 		String browser = null;
 		// ===============Browser===========================
 		if (user.contains("msie")) {
@@ -123,10 +127,19 @@ public class CommonHelper {
 		} else {
 			browser = "UnKnown, More-Info: " + userAgent;
 		}
+		log.debug("<<< OUT gettingBrowerfromRequest() >>>");
 		return browser;
 	}
-
+	/**
+	 *  Metoda ce returneaza Sistem de Operare (OS) folosit de utilizator
+	 * @param userAgent 
+	 * @return numele OS-ului folosit de utilizator
+	 * @author Stefan
+	 * @since 10/03/2018
+	 * @category Debugging
+	 */
 	private static String gettingSystemOSfromRequest(String userAgent) {
+		log.debug("<<< IN gettingSystemOSfromRequest() >>>");
 		String os;
 		if (userAgent.toLowerCase().indexOf("windows") >= 0) {
 			os = "Windows";
@@ -141,14 +154,14 @@ public class CommonHelper {
 		} else {
 			os = "UnKnown, More-Info: " + userAgent;
 		}
+		log.debug("<<< IN gettingSystemOSfromRequest() >>>");
 		return os;
 	}
 
 	/**
 	 * Metoda pentru afisarea in log unui request de tip HttpServletRequest
 	 * 
-	 * @param request
-	 *            Obiectul de tip HttpServletRequest ce vine din pagina jsp.
+	 * @param request Obiectul de tip HttpServletRequest ce vine din pagina jsp.
 	 * @category Debugging
 	 * @author Stefan
 	 * @since 10/03/2018
@@ -164,6 +177,14 @@ public class CommonHelper {
 		log.debug("<<< OUT afisareaHeadRequest() >>>");
 	}
 
+	/**
+	 * Metoda pentru returnarea IP-ului pe baza unui obiect de tip HttpServletRequest.
+	 * @param request obiect de tip HttpServletRequest.
+	 * @return IP-ului userului.
+	 * @author Stefan
+	 * @since 10/03/2018
+	 * @category Debugging
+	 */
 	public static String getIp(HttpServletRequest request) {
 		return request.getRemoteAddr();
 	}
