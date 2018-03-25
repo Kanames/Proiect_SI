@@ -14,13 +14,15 @@
     </div>
     <div class="chat-form">
         <textarea id="mesajScris"></textarea>
-        <button class="btn" onclick="doAjaxAd()">Send</button>
+        <button class="btn">Send</button>
     </div>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
 	<script type="text/javascript">
 
-function doAjaxAd() {
-		var mesajScris = $('#mesajScris').val();
+
+$(document).ready(function(){
+    $(".btn").click(function(){	
+    	var mesajScris = $('#mesajScris').val();
 		 if($.trim($("#mesajScris").val())) {
 	         $('.chatlogs').append('<div class="chat self"><div class="user-photo"><img src="https://f4.bcbits.com/img/0009587045_10.jpg"></div>\n' +
 	             '<p class="chat-msg"> '+$('#mesajScris').val()
@@ -36,15 +38,15 @@ function doAjaxAd() {
 			},
 			success : function(data) {
 				 $(".chatlogs").append(data);
-			},
-			complete : function(data) {
-				setTimeout("doAjax()", 500);
 			}
 		});
-}	
-	
-	
-	
+    });
+    
+
+});
+function loadFunc(){
+	doAjax();
+}
 function doAjax() {
 	$.ajax({
 		type : "post",
@@ -53,7 +55,7 @@ function doAjax() {
 			 $(".chatlogs").append(data);
 		},
 		complete : function(data) {
-			setTimeout("doAjax()", 500);
+			setTimeout("doAjax()", 1000);
 		}
 	});
 }

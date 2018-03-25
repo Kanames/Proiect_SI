@@ -85,6 +85,7 @@ public class CommonHelper {
 		log.debug("<<< OUT creatVisitLog() >>>");
 		return visitLog;
 	}
+	
 	/**
 	 * 	Metoda ce returneaza un String care reprezinta numele Brower-ului pe care utilizatorul il foloseste.
 	 * @param userAgent

@@ -14,7 +14,7 @@
     <link href="lib_frameworkuri/Bootstrap/cover.css" rel="stylesheet">
     <link href="lib_frameworkuri/FontAwesome/css/font-awesome.min.css" rel="stylesheet">
 </head>
-<body>
+<body onload="loadFunc()">
 <div class="site-wrapper">
     <div class="site-wrapper-inner">
         <div class="cover-container" style="">
